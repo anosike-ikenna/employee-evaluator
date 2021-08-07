@@ -1,0 +1,159 @@
+{% extends "evaluator/base.html" %} 
+
+{% block content %}
+<section class="content">
+    <div class="container-fluid">
+        <div class="row clearfix">
+            <div class="col-xs-12 col-sm-3">
+                <div class="card profile-card">
+                    <div class="profile-header">&nbsp;</div>
+                    <div class="profile-body">
+                        <div class="image-area">
+                            {% if employee.avatar %}
+                                <a href="{{ employee.avatar.url }}">
+                                    <img width="128" height="128" src="{{ employee.avatar.url }}" alt="Employee picture" />
+                                </a>
+                            {% else %}
+                                <img width="128" height="128" src="/static/images/1.jpg" alt="Employee picture">
+                            {% endif %}
+                        </div>
+                        <div class="content-area">
+                            <!-- <h3>
+                                {{ evaluator.user.first_name|title }}
+                                {{ evaluator.user.last_name|title }}
+                            </h3> -->
+                            {% for designation in employee.designations.all %}
+                                <p>{{ designation.name|title }}</p>
+                            {% endfor %}
+                            <div class="content">
+                                {% for department in employee.departments.all %}
+                                <span class="label {{ colors|random }}">{{ department }}</span>
+                                {% endfor %}
+                            </div>
+                            <p>Employee</p>
+                        </div>
+                    </div>
+                    <div class="profile-footer">
+                        <ul>
+                            <li>
+                                <span>InProgress Tasks</span>
+                                <span>{{ inprogress_tasks }}</span>
+                            </li>
+                            <li>
+                                <span>Pending Tasks</span>
+                                <span>{{ pending_tasks }}</span>
+                            </li>
+                            <li>
+                                <span>Completed Tasks</span>
+                                <span>{{ completed_tasks }}</span>
+                            </li>
+                        </ul>
+                        {% if employee.cv %}
+                            <a href="{{ employee.cv.url }}" class="btn btn-primary btn-lg waves-effect btn-block" style="margin-top: 27px;">VIEW CV</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-9">
+                <div class="card">
+                    <div class="body">
+                        <div>
+                            <!-- <ul class="nav nav-tabs" role="tablist"> -->
+                                <!-- <li role="presentation" class="active"><a href="#employee_details" aria-controls="home" role="tab" data-toggle="tab">Employee Details</a></li> -->
+                                <!-- <li role="presentation"><a href="#profile_settings" aria-controls="settings" role="tab" data-toggle="tab">Profile Settings</a></li> -->
+                                <!-- <li role="presentation"><a href="#change_password_settings" aria-controls="settings" role="tab" data-toggle="tab">Change Password</a></li> -->
+                            <!-- </ul> -->
+
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane fade in active" id="employee_details">
+                                    <!-- <form class="form-horizontal"> -->
+                                        <!-- <div class="form-group">
+                                            <label for="NameSurname" class="col-sm-2 control-label">Name Surname</label>
+                                            <div class="col-sm-10">
+                                                <div class="form-line">
+                                                    <input type="text" class="form-control" id="NameSurname" name="NameSurname" placeholder="Name Surname" value="Marc K. Hammond" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="Email" class="col-sm-2 control-label">Email</label>
+                                            <div class="col-sm-10">
+                                                <div class="form-line">
+                                                    <input type="email" class="form-control" id="Email" name="Email" placeholder="Email" value="example@example.com" required>
+                                                </div>
+                                            </div>
+                                        </div> -->
+                                        <div class="m-b-20">
+                                            <h4>First Name</h4>
+                                            <p class="m-t--5">{{ employee.user.first_name|upper }}</p>
+                                        </div>
+                                        <div class="m-b-20">
+                                            <h4>Middle Name</h4>
+                                            <p class="m-t--5">{{ employee.user.middle_name|upper }}</p>
+                                        </div>
+                                        <div class="m-b-20">
+                                            <h4>Last Name</h4>
+                                            <p class="m-t--5">{{ employee.user.last_name|upper }}</p>
+                                        </div>
+                                        <div class="m-b-20">
+                                            <h4>Phone No</h4>
+                                            <p class="m-t--5">{{ employee.user.phone_number }}</p>
+                                        </div>
+                                        <div class="m-b-20">
+                                            <h4>Email</h4>
+                                            <p class="m-t--5">{{ employee.user.email|urlize }}</p>
+                                        </div>
+                                        <div class="m-b-20">
+                                            <h4>Github</h4>
+                                            <p class="m-t--5">{{ employee.github|urlize }}</p>
+                                        </div>
+                                        <a href="{{ employee.get_edit_url }}" class="btn btn-primary m-t-15 waves-effect">EDIT EMPLOYEE</a>
+                                        <a href="{{ employee.get_delete_url }}" class="btn btn-danger m-t-15 waves-effect">DELETE EMPLOYEE</a>
+                                </div>
+                                <!-- <div role="tabpanel" class="tab-pane fade in" id="change_password_settings">
+                                    <form class="form-horizontal">
+                                        <div class="form-group">
+                                            <label for="OldPassword" class="col-sm-3 control-label">Old Password</label>
+                                            <div class="col-sm-9">
+                                                <div class="form-line">
+                                                    <input type="password" class="form-control" id="OldPassword" name="OldPassword" placeholder="Old Password" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="NewPassword" class="col-sm-3 control-label">New Password</label>
+                                            <div class="col-sm-9">
+                                                <div class="form-line">
+                                                    <input type="password" class="form-control" id="NewPassword" name="NewPassword" placeholder="New Password" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="NewPasswordConfirm" class="col-sm-3 control-label">New Password (Confirm)</label>
+                                            <div class="col-sm-9">
+                                                <div class="form-line">
+                                                    <input type="password" class="form-control" id="NewPasswordConfirm" name="NewPasswordConfirm" placeholder="New Password (Confirm)" required>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="col-sm-offset-3 col-sm-9">
+                                                <button type="submit" class="btn btn-danger">SUBMIT</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block custom_js %}
+<script src="/static/js/pages/examples/profile.js"></script>
+{% endblock %}

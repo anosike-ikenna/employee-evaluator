@@ -1,0 +1,202 @@
+{% extends "evaluator/base.html" %} 
+
+    {% block extra_css %}
+    <link href="/static/sweetalert/sweetalert.css" rel="stylesheet">
+    <!-- <link href="/static/plugins/dropzone/dropzone.css" rel="stylesheet"> -->
+    {% endblock %} 
+
+    {% block content %}
+    <section class="content">
+        <div class="container-fluid">
+            <!-- <div class="block-header">
+                <h2>FORM EXAMPLES</h2>
+            </div> -->
+
+            <!-- Vertical Layout -->
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2 style="font-weight: bold; font-size: 22px;">
+                                NEW EVALUATOR
+                            </h2>
+                            <!-- <ul class="header-dropdown m-r--5">
+                                <li class="dropdown">
+                                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                        <i class="material-icons">more_vert</i>
+                                    </a>
+                                    <ul class="dropdown-menu pull-right">
+                                        <li><a href="javascript:void(0);">Action</a></li>
+                                        <li><a href="javascript:void(0);">Another action</a></li>
+                                        <li><a href="javascript:void(0);">Something else here</a></li>
+                                    </ul>
+                                </li>
+                            </ul> -->
+                        </div>
+                        <div class="body">
+                            <form id="form_validation" method="POST" enctype="multipart/form-data" action="{% url 'evaluator_new' %}">
+                                {% csrf_token %}
+                                {% if form.non_field_errors %}
+                                    <div class="my_error">
+                                        {% for error in form.non_field_errors %}
+                                            <li><em>{{ error }}</em></li>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                                <div class="form-group form-float">
+                                    {% if form.first_name.errors %}
+                                    <div class="my_error">
+                                        {% for error in form.first_name.errors %}
+                                            <li><em>{{ error }}</em></li>
+                                        {% endfor %}
+                                    </div>
+                                    {% endif %}
+                                    <div class="form-line">
+                                        <input type="text" class="form-control" name="first_name" value="{{ form.first_name.value }}" required>
+                                        <label class="form-label">First Name</label>
+                                    </div>
+                                </div>
+                                <div class="form-group form-float">
+                                    {% if form.middle_name.errors %}
+                                    <div class="my_error">
+                                        {% for error in form.middle_name.errors %}
+                                            <li><em>{{ error }}</em></li>
+                                        {% endfor %}
+                                    </div>
+                                    {% endif %}
+                                    <div class="form-line">
+                                        <input type="text" class="form-control" name="middle_name" value="{{ form.middle_name.value }}" required>
+                                        <label class="form-label">Middle Name</label>
+                                    </div>
+                                </div>
+                                <div class="form-group form-float">
+                                    {% if form.last_name.errors %}
+                                    <div class="my_error">
+                                        {% for error in form.last_name.errors %}
+                                            <li><em>{{ error }}</em></li>
+                                        {% endfor %}
+                                    </div>
+                                    {% endif %}
+                                    <div class="form-line">
+                                        <input type="text" class="form-control" name="last_name" value="{{ form.last_name.value }}" required>
+                                        <label class="form-label">Last Name</label>
+                                    </div>
+                                </div>
+                                {% if form.phone_number.errors %}
+                                    <div class="my_error">
+                                        {% for error in form.phone_number.errors %}
+                                            <li><em>{{ error }}</em></li>
+                                        {% endfor %}
+                                    </div>
+                                    {% endif %}
+                                <div class="form-group form-float">
+                                    <div class="form-line">
+                                        <input type="tel" class="form-control" name="phone_number" placeholder="" value="{{ form.phone_number.value }}" required>
+                                        <label class="form-label">Phone no (e.g 07037001657)</label>
+                                    </div>
+                                </div>
+                                <div class="form-group form-float">
+                                    {% if form.email.errors %}
+                                    <div class="my_error">
+                                        {% for error in form.email.errors %}
+                                            <li><em>{{ error }}</em></li>
+                                        {% endfor %}
+                                    </div>
+                                    {% endif %}
+                                    <div class="form-line">
+                                        <input type="email" class="form-control" name="email" value="{{ form.email.value }}" required>
+                                        <label class="form-label">Email</label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-float">
+                                    {% if form.password1.errors %}
+                                    <div class="alert my_error">
+                                        {% for error in form.password1.errors %}
+                                            <li><em>{{ error }}</em></li>
+                                        {% endfor %}
+                                    </div>
+                                    {% endif %}
+                                    <div class="form-line">
+                                        <input type="password" class="form-control" name="password1" id="password" required>
+                                        <label class="form-label">Password</label>
+                                    </div>
+                                </div>
+                                <div class="form-group form-float">
+                                    {% if form.password2.errors %}
+                                    <div class="my_error">
+                                        {% for error in form.password2.errors %}
+                                            <li><em>{{ error }}</em></li>
+                                        {% endfor %}
+                                    </div>
+                                    {% endif %}
+                                    <div class="form-line">
+                                        <input type="password" class="form-control" name="password2" required>
+                                        <label class="form-label">Confirm Password</label>
+                                    </div>
+                                </div>
+                                <div class="form-group form-float avatar_img">
+                                    <a class="avatar_select fake_btn btn btn-default">Upload evaluator profile photo</a>
+                                    <img class="upload_file avatar_pic" src="/static/images/1.jpg" style="width: 100px; height: 100px; border: 1px solid #fff; border-radius: 50%;">
+                                </div>
+                                    <button type="submit" class="btn btn-primary btn-lg m-l-15 waves-effect">SAVE</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    {% endblock %}
+
+    {% block extra_js %}
+    <script src="/static/plugins/jquery-validation/jquery.validate.js"></script>
+    <script src="/static/plugins/dropzone/dropzone.js"></script>
+    {% endblock %} 
+
+    {% block custom_js %}
+    <script src="/static/js/pages/forms/form-validation.js"></script>
+    <script src="/static/js/pages/forms/advanced-form-elements.js"></script>
+
+    <script>
+        function fileManipulator (query, img) {
+            var el = document.body.querySelector(query);
+            var imageEl = document.body.querySelector(img);
+            el.addEventListener("change", () => {
+                for (let file of Array.from(el.files)) {
+                    let reader = new FileReader()
+                    reader.addEventListener("load", () => {
+                        imageEl.src = reader.result;
+                    });
+                    reader.readAsDataURL(file);
+                    console.log(el.files)
+                }
+            });
+        }
+        var avatar = document.body.querySelector(".avatar_select");
+        avatar.addEventListener("click", () => {
+            var avatar_input = document.body.querySelector("input[name=avatar]");
+            if (avatar_input) {
+                ;
+            }
+            else {
+                avatar_input = document.createElement("input")
+                avatar_input.type = "file";
+                avatar_input.name = "avatar";
+                avatar_input.style.display = "none"
+                console.log(avatar_input)
+                avatar.parentElement.appendChild(avatar_input);
+            }
+            fileManipulator("input[name=avatar]", ".avatar_pic");
+                avatar_input.click();
+        });	
+        var my_x = document.body.querySelectorAll(".my_error")
+        if (my_x) {
+            for (let x of my_x) {
+                x.style.color = "red"
+                x.style.marginBottom = "10px"
+            }
+        }
+    </script>
+
+    {% endblock %}

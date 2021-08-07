@@ -1,0 +1,344 @@
+{% extends "evaluator/base.html" %} 
+{% load evaluator_extras %}
+
+    {% block extra_css %}
+    <link href="/static/sweetalert/sweetalert.css" rel="stylesheet">
+    <!-- <link href="/static/plugins/dropzone/dropzone.css" rel="stylesheet"> -->
+    <!-- Multi Select Css -->
+    <link href="/static/plugins/multi-select/css/multi-select.css" rel="stylesheet">
+    <!-- Bootstrap Select Css -->
+    <link href="/static/plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
+    {% endblock %} 
+
+    {% block content %}
+    <section class="content">
+            <div class="body">
+                <div class="row clearfix">
+                    <div class="col-xs-12 col-sm-3">
+                        <div class="card profile-card">
+                            <div class="profile-header">&nbsp;</div>
+                            <div class="profile-body">
+                                <div class="image-area">
+                                    {% if employee.avatar %}
+                                        <img width="128" height="128" src="{{ employee.avatar.url }}" class="upload_file avatar_pic" alt="Employee Image" />
+                                    {% else %}
+                                        <img width="128" height="128" src="/static/images/1.jpg" class="upload_file avatar_pic" alt="Employee Image" />
+                                    {% endif %}
+                                </div>
+                                <div class="content-area">
+                                    <!-- <h3>
+                                        {{ evaluator.user.first_name|title }}
+                                        {{ evaluator.user.last_name|title }}
+                                    </h3> -->
+                                    <!-- <p>Web Software Developer</p> -->
+                                    <p>Employee</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+                        <div class="card">
+                            <div class="header">
+                                <h2>EDIT EMPLOYEE</h2>
+                                <!-- <ul class="header-dropdown m-r--5">
+                                    <li class="dropdown">
+                                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                            <i class="material-icons">more_vert</i>
+                                        </a>
+                                        <ul class="dropdown-menu pull-right">
+                                            <li><a href="javascript:void(0);">Action</a></li>
+                                            <li><a href="javascript:void(0);">Another action</a></li>
+                                            <li><a href="javascript:void(0);">Something else here</a></li>
+                                        </ul>
+                                    </li> -->
+                                </ul>
+                            </div>
+                            <div class="body">
+                                
+                                <form id="form_validation" method="POST" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    {% if form.non_field_errors %}
+                                    <div class="my_error">
+                                        {% for error in form.non_field_errors %}
+                                            <li><em>{{ error }}</em></li>
+                                        {% endfor %}
+                                    </div>
+                                    {% endif %}
+                                    <h3 class="font-17">Personal Details</h3>
+                                    <fieldset>
+                                        <div class="form-group form-float">
+                                            {% if form.first_name.errors %}
+                                                <div class="my_error">
+                                                    {% for error in form.first_name.errors %}
+                                                        <li><em>{{ error }}</em></li>
+                                                    {% endfor %}
+                                                </div>
+                                            {% endif %}
+                                            <div class="form-line">
+                                                <input type="text" class="form-control" name="first_name" value="{{ form.first_name.value }}" required>
+                                                <label class="form-label">First Name*</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group form-float">
+                                            {% if form.middle_name.errors %}
+                                                <div class="my_error">
+                                                    {% for error in form.middle_name.errors %}
+                                                        <li><em>{{ error }}</em></li>
+                                                    {% endfor %}
+                                                </div>
+                                            {% endif %}
+                                            <div class="form-line">
+                                                <input type="text" class="form-control" name="middle_name" value="{{ form.middle_name.value }}" required>
+                                                <label class="form-label">Middle Name*</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group form-float">
+                                            {% if form.last_name.errors %}
+                                                <div class="my_error">
+                                                    {% for error in form.last_name.errors %}
+                                                        <li><em>{{ error }}</em></li>
+                                                    {% endfor %}
+                                                </div>
+                                            {% endif %}
+                                            <div class="form-line">
+                                                <input type="text" class="form-control" name="last_name" value="{{ form.last_name.value }}" required>
+                                                <label class="form-label">Last Name*</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group form-float">
+                                            {% if form.phone_number.errors %}
+                                                <div class="my_error">
+                                                    {% for error in form.phone_number.errors %}
+                                                        <li><em>{{ error }}</em></li>
+                                                    {% endfor %}
+                                                </div>
+                                            {% endif %}
+                                            <div class="form-line">
+                                                <input type="tel" class="form-control" name="phone_number" value="{{ form.phone_number.value }}" required>
+                                                <label class="form-label">Phone no(e.g 07037001657)*</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group form-float">
+                                            {% if employee_form.avatar.errors %}
+                                                <div class="my_error">
+                                                    {% for error in employee_form.avatar.errors %}
+                                                        <li><em>{{ error }}</em></li>
+                                                    {% endfor %}
+                                                </div>
+                                            {% endif %}
+                                            <a class="avatar_select fake_btn btn btn-default font-10">UPLOAD EMPLOYEE PHOTO</a>
+                                            <!-- {% if employee_form.avatar %} 
+                                                <input name="avatar" type="file" value="{{ employee_form.avatar.value }}" style="display: none;">
+                                            {% endif %}                            -->
+                                        </div>
+                                    </fieldset>
+
+                                    <h3 class="font-17">Login Details</h3>
+                                    <fieldset>
+                                        <div class="form-group form-float">
+                                            {% if form.email.errors %}
+                                                <div class="my_error">
+                                                    {% for error in form.email.errors %}
+                                                        <li><em>{{ error }}</em></li>
+                                                    {% endfor %}
+                                                </div>
+                                            {% endif %}
+                                            <div class="form-line">
+                                                <input type="email" name="email" class="form-control" value="{{ form.email.value }}" required>
+                                                <label class="form-label">Email*</label>
+                                            </div>
+                                        </div>
+                                        <!-- <div class="form-group form-float">
+                                            {% if form.password1.errors %}
+                                                <div class="my_error">
+                                                    {% for error in form.password1.errors %}
+                                                        <li><em>{{ error }}</em></li>
+                                                    {% endfor %}
+                                                </div>
+                                            {% endif %}
+                                            <div class="form-line">
+                                                <input type="password" class="form-control" name="password1" id="password" required>
+                                                <label class="form-label">Password*</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group form-float">
+                                            {% if form.password2.errors %}
+                                                <div class="my_error">
+                                                    {% for error in form.password2.errors %}
+                                                        <li><em>{{ error }}</em></li>
+                                                    {% endfor %}
+                                                </div>
+                                            {% endif %}
+                                            <div class="form-line">
+                                                <input type="password" class="form-control" name="password2" required>
+                                                <label class="form-label">Confirm Password*</label>
+                                            </div>
+                                        </div> -->
+                                    </fieldset>
+    
+                                    <h3 class="font-17">Work Details - Finish</h3>
+                                    <fieldset>
+                                        <div class="form-group form-float">
+                                            {% if employee_form.github.errors %}
+                                                <div class="my_error">
+                                                    {% for error in employee_form.github.errors %}
+                                                        <li><em>{{ error }}</em></li>
+                                                    {% endfor %}
+                                                </div>
+                                            {% endif %}
+                                            <div class="form-line">
+                                                <input type="url" class="form-control" name="github" value="{{ employee_form.github.value }}">
+                                                <label class="form-label">github link (e.g https://github.com/example)</label>
+                                            </div>
+                                        </div>
+                                        {% if designations %}
+                                        <div class="form-group form-float">
+                                            <!-- <div class="form-line"> -->
+                                                {% if employee_form.designations.errors %}
+                                                <div class="my_error">
+                                                    {% for error in employee_form.designations.errors %}
+                                                        <li><em>{{ error }}</em></li>
+                                                    {% endfor %}
+                                                </div>
+                                                {% endif %}
+                                                <p>
+                                                    Select Designations
+                                                </p>
+                                                <select class="form-control show-tick" name="designations" multiple>
+                                                    {% for designation in designations %}
+                                                        <option value="{{ designation.id }}" {% if designation.id|intstr in employee_form.designations.value|str_array %} selected {% endif %}>
+                                                            {{ designation.name }}
+                                                        </option>
+                                                    {% endfor %}
+                                                </select>
+                                            <!-- </div> -->
+                                        </div>
+                                        {% else %}
+                                            <p class="my_error">
+                                                You cannot create an employee when no designations exist
+                                            </p>
+                                        {% endif %}
+                                        {% if departments %}
+                                        <div class="form-group form-float">
+                                            <!-- <div class="form-line"> -->
+                                                {% if employee_form.departments.errors %}
+                                                <div class="my_error">
+                                                    {% for error in employee_form.departments.errors %}
+                                                        <li><em>{{ error }}</em></li>
+                                                    {% endfor %}
+                                                </div>
+                                                {% endif %}
+                                                <p>
+                                                    Select Departments
+                                                </p>
+                                                <select class="form-control show-tick" name="departments" multiple>
+                                                    {% for department in departments %}
+                                                        <option value="{{ department.id }}" {% if department.id|intstr in employee_form.departments.value|str_array %} selected {% endif %}>
+                                                            {{ department.name }}
+                                                        </option>
+                                                    {% endfor %}
+                                                </select>
+                                            <!-- </div> -->
+                                        </div>
+                                        {% else %} 
+                                            <p class="my_error">
+                                                You cannot create an employee when no departments exists
+                                            </p>
+                                        {% endif %}
+                                        <div class="form-group form-float">
+                                            <a class="cv_select fake_btn btn btn-default">UPLOAD EMPLOYEE CV</a>
+                                            {% if employee.cv %}
+                                                <span class="font-italic col-teal cv_target"></span>
+                                            {% else %} 
+                                                <span class="font-italic col-teal cv_target"></span>
+                                            {% endif %}
+                                        </div>
+                                    </fieldset>
+                                    <div>
+                                        <button type="submit" class="btn btn-primary p-r-50 p-l-50 m-t-30 waves-effect">SAVE</button>
+                                        <a href="{{ employee.get_delete_url }}" class="btn btn-danger m-t-30 waves-effect">DELETE EMPLOYEE</a>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- #END# Advanced Form Example With Validation -->
+            </div>
+    </section>
+    {% endblock %}
+
+    {% block extra_js %} 
+    <!-- Jquery Validation Plugin Css -->
+    <script src="/static/plugins/jquery-validation/jquery.validate.js"></script>
+    {% endblock %}
+
+    {% block custom_js %}
+    <!-- <script src="/static/js/pages/forms/form-wizard.js"></script> -->
+    <script src="/static/js/pages/forms/form-validation.js"></script>
+    <script src="/static/js/pages/forms/advanced-form-elements.js"></script>
+
+    <script>
+        function fileManipulator (query, img) {
+            var el = document.body.querySelector(query);
+            var imageEl = document.body.querySelector(img);
+            el.addEventListener("change", () => {
+                for (let file of Array.from(el.files)) {
+                    let reader = new FileReader()
+                    reader.addEventListener("load", () => {
+                        imageEl.src = reader.result;
+                    });
+                    reader.readAsDataURL(file);
+                    console.log(el.files)
+                }
+            });
+        }
+        var avatar = document.body.querySelector(".avatar_select");
+        avatar.addEventListener("click", () => {
+            var avatar_input = document.body.querySelector("input[name=avatar]");
+            if (avatar_input) {
+                ;
+            }
+            else {
+                avatar_input = document.createElement("input")
+                avatar_input.type = "file";
+                avatar_input.name = "avatar";
+                avatar_input.style.display = "none"
+                console.log(avatar_input)
+                avatar.parentElement.appendChild(avatar_input);
+            }
+            fileManipulator("input[name=avatar]", ".avatar_pic");
+            avatar_input.click();
+        });	
+
+        var cv = document.body.querySelector(".cv_select");
+        var cv_target = document.body.querySelector(".cv_target");
+        cv.addEventListener("click", () => {
+            var cv_input = document.body.querySelector("input[name=cv]")
+            
+            if (cv_input) {
+                ;
+            }
+            else {
+                cv_input = document.createElement("input");
+                cv_input.type = "file";
+                cv_input.name = "cv";
+                cv_input.style.display = "none";
+                cv.parentElement.appendChild(cv_input);
+                cv_input.addEventListener("change", () => {
+                    alert("changed")
+                    console.log(cv_input)
+                    cv_target.textContent = cv_input.files[0].name
+                });
+            }
+            cv_input.click()
+        })
+        var my_x = document.body.querySelectorAll(".my_error")
+        if (my_x) {
+            for (let x of my_x) {
+                x.style.color = "red"
+                x.style.marginBottom = "10px"
+            }
+        }
+    </script>
+    {% endblock %}

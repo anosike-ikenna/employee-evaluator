@@ -1,0 +1,80 @@
+[
+{
+    "model": "evaluator.task",
+    "pk": 5,
+    "fields": {
+        "name": "raster",
+        "description": "rasterize this shit",
+        "assigned_to": 4,
+        "evaluator": 10,
+        "status": "complete",
+        "due_date": "2021-07-28",
+        "created": "2021-07-28"
+    }
+},
+{
+    "model": "evaluator.task",
+    "pk": 6,
+    "fields": {
+        "name": "login view",
+        "description": "fix the login functionality and plugin",
+        "assigned_to": 4,
+        "evaluator": 12,
+        "status": "complete",
+        "due_date": "2022-10-04",
+        "created": "2021-07-29"
+    }
+},
+{
+    "model": "evaluator.task",
+    "pk": 7,
+    "fields": {
+        "name": "some random task",
+        "description": "do some random shit",
+        "assigned_to": 9,
+        "evaluator": 14,
+        "status": "complete",
+        "due_date": "2022-10-04",
+        "created": "2021-08-03"
+    }
+},
+{
+    "model": "evaluator.task",
+    "pk": 8,
+    "fields": {
+        "name": "build the sign up page",
+        "description": "signup page requires a full recode to include facebook, twitter and basic email-password authentication",
+        "assigned_to": 9,
+        "evaluator": 14,
+        "status": "pending",
+        "due_date": "2021-08-02",
+        "created": "2021-08-04"
+    }
+},
+{
+    "model": "evaluator.task",
+    "pk": 9,
+    "fields": {
+        "name": "Fix the menu bar",
+        "description": "Menubar is currently buggy, requiring you to double click it before it comes into view",
+        "assigned_to": 4,
+        "evaluator": 10,
+        "status": "pending",
+        "due_date": "2021-08-22",
+        "created": "2021-08-05"
+    }
+},
+{
+    "model": "evaluator.task",
+    "pk": 10,
+    "fields": {
+        "name": "Fix the image size limit",
+        "description": "Currently users can submit images up to 8mb in size. This needs to be reduced to 4mb max",
+        "assigned_to": 10,
+        "evaluator": 12,
+        "status": "in progress",
+        "due_date": "2021-08-22",
+        "created": "2021-08-05"
+    }
+}
+]

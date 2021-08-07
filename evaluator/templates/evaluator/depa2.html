@@ -1,0 +1,149 @@
+{% extends "evaluator/base.html" %}
+
+{% block extra_css %}
+<!-- JQuery DataTable Css -->
+<link href="/static/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+    <section class="content">
+        <div class="container-fluid">
+            <div class="block-header">
+                <h2>
+                </h2>
+                {% if messages %}
+                <ul class="messages alert alert-success">
+                    {% for message in messages %}
+                    <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>
+                        {{ message }}
+                    </li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+            <!-- Basic Examples -->
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2>
+                                DEPARTMENT LIST
+                            </h2>
+                            <ul class="header-dropdown m-r--5">
+                                <li class="dropdown">
+                                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                        <i class="material-icons">more_vert</i>
+                                    </a>
+                                    <ul class="dropdown-menu pull-right">
+                                        <li><a href="task_edit.html">Add New</a></li>
+                                        <!-- <li><a href="task_list.html" data-toggle="modal" data-target="#largeModal">Add New Task</a></li> -->
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Name</th>
+                                            <th>Description</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Name</th>
+                                            <th>Description</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                        {% for department in departments %}
+                                        <tr>
+                                            <td>{{ department.id }}</td>
+                                            <td>{{ department.name }}</td>
+                                            <td>{{ department.description }}</td>
+                                            <td>
+                                                <div class="btn-group">
+                                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        Action <span class="caret"></span>
+                                                    </button>
+                                                    <ul class="dropdown-menu">
+                                                        <li><a href="javascript:void(0);">Edit</a></li>
+                                                        <li><a class="waves-effect" data-toggle="modal" data-target="#smallModal">Delete</a></li>
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- #END# Basic Examples -->
+        </div>
+        <div class="modal fade" id="defaultModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="defaultModalLabel">View Task</h4>
+                    </div>
+                    <div class="modal-body">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales orci ante, sed ornare eros vestibulum ut. Ut accumsan
+                        vitae eros sit amet tristique. Nullam scelerisque nunc enim, non dignissim nibh faucibus ullamcorper.
+                        Fusce pulvinar libero vel ligula iaculis ullamcorper. Integer dapibus, mi ac tempor varius, purus
+                        nibh mattis erat, vitae porta nunc nisi non tellus. Vivamus mollis ante non massa egestas fringilla.
+                        Vestibulum egestas consectetur nunc at ultricies. Morbi quis consectetur nunc.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Small Size -->
+        <div class="modal fade" id="smallModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-sm" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="smallModalLabel">Modal title</h4>
+                    </div>
+                    <div class="modal-body">
+                        Are you sure you want to delete?
+                    </div>
+                    <div class="modal-footer">
+                        <a href="" class="btn btn-link waves-effect">Delete</a>
+                        <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+    {% block extra_js %}
+    <!-- Jquery DataTable Plugin Js -->
+    <script src="/static/plugins/jquery-datatable/jquery.dataTables.js"></script>
+    <script src="/static/plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
+    <script src="/static/plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js"></script>
+    <script src="/static/plugins/jquery-datatable/extensions/export/buttons.flash.min.js"></script>
+    <script src="/static/plugins/jquery-datatable/extensions/export/jszip.min.js"></script>
+    <script src="/static/plugins/jquery-datatable/extensions/export/pdfmake.min.js"></script>
+    <script src="/static/plugins/jquery-datatable/extensions/export/vfs_fonts.js"></script>
+    <script src="/static/plugins/jquery-datatable/extensions/export/buttons.html5.min.js"></script>
+    <script src="/static/plugins/jquery-datatable/extensions/export/buttons.print.min.js"></script>
+    {% endblock %}
+
+    {% block custom_js %}
+    <script src="/static/js/pages/tables/jquery-datatable.js"></script>
+    {% endblock %}
+</body>
+
+</html>

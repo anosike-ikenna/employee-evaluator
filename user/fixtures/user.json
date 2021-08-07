@@ -1,0 +1,214 @@
+[
+{
+    "model": "user.user",
+    "pk": 2,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$XRHiQpI3gsSazfffkRnsrZ$7/7r4Fz3BDiG/H0J4QANGxisMIy5ig1u9ZleO1Rd4y8=",
+        "last_login": "2021-08-05T22:28:41.958Z",
+        "is_superuser": true,
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2021-07-22T15:31:11.368Z",
+        "username": "ikenna",
+        "first_name": "",
+        "middle_name": "",
+        "last_name": "",
+        "email": "anosike212@gmail.com",
+        "phone_number": "",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "user.user",
+    "pk": 3,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$XRHiQpI3gsSazfffkRnsrZ$7/7r4Fz3BDiG/H0J4QANGxisMIy5ig1u9ZleO1Rd4y8=",
+        "last_login": null,
+        "is_superuser": false,
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2021-07-25T17:48:04.599Z",
+        "username": "raven",
+        "first_name": "",
+        "middle_name": "",
+        "last_name": "",
+        "email": "raven@gmail.com",
+        "phone_number": "07037001657",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "user.user",
+    "pk": 21,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$XRHiQpI3gsSazfffkRnsrZ$7/7r4Fz3BDiG/H0J4QANGxisMIy5ig1u9ZleO1Rd4y8=",
+        "last_login": null,
+        "is_superuser": false,
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2021-07-27T13:31:07.015Z",
+        "username": "",
+        "first_name": "patience",
+        "middle_name": "divine",
+        "last_name": "johnson",
+        "email": "patience@gmail.com",
+        "phone_number": "08035888792",
+        "groups": [
+            5
+        ],
+        "user_permissions": []
+    }
+},
+{
+    "model": "user.user",
+    "pk": 23,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$XRHiQpI3gsSazfffkRnsrZ$7/7r4Fz3BDiG/H0J4QANGxisMIy5ig1u9ZleO1Rd4y8=",
+        "last_login": "2021-08-04T00:14:12.815Z",
+        "is_superuser": false,
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2021-07-27T17:42:14.187Z",
+        "username": "",
+        "first_name": "vivian",
+        "middle_name": "amaka",
+        "last_name": "james",
+        "email": "vivian@gmail.com",
+        "phone_number": "09032324211",
+        "groups": [
+            5
+        ],
+        "user_permissions": []
+    }
+},
+{
+    "model": "user.user",
+    "pk": 24,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$XRHiQpI3gsSazfffkRnsrZ$7/7r4Fz3BDiG/H0J4QANGxisMIy5ig1u9ZleO1Rd4y8=",
+        "last_login": null,
+        "is_superuser": false,
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2021-07-28T00:56:40.339Z",
+        "username": "",
+        "first_name": "vivian",
+        "middle_name": "amaka",
+        "last_name": "anosike",
+        "email": "anos@gmail.com",
+        "phone_number": "09032",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "user.user",
+    "pk": 26,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$XRHiQpI3gsSazfffkRnsrZ$7/7r4Fz3BDiG/H0J4QANGxisMIy5ig1u9ZleO1Rd4y8=",
+        "last_login": "2021-08-03T23:07:17.623Z",
+        "is_superuser": false,
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2021-07-28T01:14:23.309Z",
+        "username": "",
+        "first_name": "cynthia",
+        "middle_name": "amy",
+        "last_name": "anostrike",
+        "email": "anosyke@gmail.com",
+        "phone_number": "09033423432",
+        "groups": [
+            6
+        ],
+        "user_permissions": []
+    }
+},
+{
+    "model": "user.user",
+    "pk": 32,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$XRHiQpI3gsSazfffkRnsrZ$7/7r4Fz3BDiG/H0J4QANGxisMIy5ig1u9ZleO1Rd4y8=",
+        "last_login": "2021-08-04T00:13:17.936Z",
+        "is_superuser": false,
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2021-08-02T14:33:24.618Z",
+        "username": "",
+        "first_name": "benjamin",
+        "middle_name": "adakama",
+        "last_name": "ayeni",
+        "email": "benimax@gmail.com",
+        "phone_number": "07034234323",
+        "groups": [
+            6
+        ],
+        "user_permissions": []
+    }
+},
+{
+    "model": "user.user",
+    "pk": 33,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$XRHiQpI3gsSazfffkRnsrZ$7/7r4Fz3BDiG/H0J4QANGxisMIy5ig1u9ZleO1Rd4y8=",
+        "last_login": "2021-08-05T22:31:19.477Z",
+        "is_superuser": false,
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2021-08-02T14:58:39.843Z",
+        "username": "",
+        "first_name": "daniel",
+        "middle_name": "theo",
+        "last_name": "theophilus",
+        "email": "daniel@gmail.com",
+        "phone_number": "08032343223",
+        "groups": [
+            5
+        ],
+        "user_permissions": []
+    }
+},
+{
+    "model": "user.user",
+    "pk": 34,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$XRHiQpI3gsSazfffkRnsrZ$7/7r4Fz3BDiG/H0J4QANGxisMIy5ig1u9ZleO1Rd4y8=",
+        "last_login": "2021-08-04T23:08:47.722Z",
+        "is_superuser": false,
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2021-08-04T01:05:59.132Z",
+        "username": "",
+        "first_name": "james",
+        "middle_name": "michael",
+        "last_name": "christian",
+        "email": "anosike1@gmail.com",
+        "phone_number": "08034323433",
+        "groups": [
+            6
+        ],
+        "user_permissions": []
+    }
+},
+{
+    "model": "user.user",
+    "pk": 37,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$XRHiQpI3gsSazfffkRnsrZ$7/7r4Fz3BDiG/H0J4QANGxisMIy5ig1u9ZleO1Rd4y8=",
+        "last_login": "2021-08-04T01:26:02.805Z",
+        "is_superuser": true,
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2021-08-04T01:25:05.441Z",
+        "username": "default",
+        "first_name": "",
+        "middle_name": "",
+        "last_name": "",
+        "email": "trash@gmail.com",
+        "phone_number": "3242",
+        "groups": [],
+        "user_permissions": []
+    }
+}
+]

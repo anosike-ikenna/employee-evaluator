@@ -1,0 +1,34 @@
+[
+{
+    "model": "evaluator.department",
+    "pk": 1,
+    "fields": {
+        "name": "python",
+        "description": "for python developers"
+    }
+},
+{
+    "model": "evaluator.department",
+    "pk": 10,
+    "fields": {
+        "name": "rust",
+        "description": "for rust developers"
+    }
+},
+{
+    "model": "evaluator.department",
+    "pk": 12,
+    "fields": {
+        "name": "java",
+        "description": "for java developers"
+    }
+},
+{
+    "model": "evaluator.department",
+    "pk": 13,
+    "fields": {
+        "name": "php",
+        "description": "for php developers"
+    }
+}
+]

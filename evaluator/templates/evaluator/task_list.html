@@ -1,0 +1,289 @@
+{% extends "evaluator/base.html" %}
+
+{% block extra_css %}
+<!-- JQuery DataTable Css -->
+<link href="/static/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+    <section class="content">
+        <div class="container-fluid">
+            <div class="block-header">
+                <h2>
+                </h2>
+                {% if messages %}
+                <ul class="messages alert alert-success dj-message">
+                    {% for message in messages %}
+                    <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>
+                        {{ message }}
+                    </li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+        </div>
+        <!-- Basic Examples -->
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <h2>
+                            TASK LIST
+                        </h2>
+                        <ul class="header-dropdown m-r--5">
+                            <li class="dropdown">
+                                <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                    <i class="material-icons">more_vert</i>
+                                </a>
+                                <ul class="dropdown-menu pull-right">
+                                    <li><a href="{% url 'task_new' %}">Add New Task</a></li>
+                                    <!-- <li><a href="task_list.html" data-toggle="modal" data-target="#largeModal">Add New Task</a></li> -->
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Task</th>
+                                        {% if user.is_superuser or user.evaluator %}
+                                            <th>Assigned To</th>
+                                        {% endif %}
+                                        {% if user.is_superuser %}
+                                            <th>Evaluator</th>
+                                        {% endif %}
+                                        <th>Status</th>
+                                        <th>Due date</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tfoot>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Task</th>
+                                        {% if user.is_superuser or user.evaluator %}
+                                            <th>Assigned To</th>
+                                        {% endif %}
+                                        {% if user.is_superuser %}
+                                            <th>Evaluator</th>
+                                        {% endif %}
+                                        <th>Status</th>
+                                        <th>Due date</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </tfoot>
+                                <tbody>
+                                    {% for task in tasks %}
+                                        <tr>
+                                            <td>{{ forloop.counter }}</td>
+                                            <td>{{ task.name|title }}</td>
+                                            {% if user.is_superuser or user.evaluator %}
+                                                <td>{{ task.assigned_to|title }}</td>
+                                            {% endif %}
+                                            {% if user.is_superuser %}
+                                                <td>{{ task.evaluator|title }}</td>
+                                            {% endif %}
+                                            <td>
+                                                <span class="badge {% if task.status == 'pending' %}bg-orange{% elif task.status == 'in progress' %}bg-cyan{% elif task.status == 'complete' %}bg-green{% endif %}">
+                                                    {{ task.status }}
+                                                </span>
+                                                {% if task.due_date < date and task.status != "complete" %}
+                                                    <span class="badge bg-red">Overdue</span>
+                                                {% endif %}
+                                                {% if task.status == "complete" %}
+                                                    {% if user.is_superuser or user.evaluator %}
+                                                        {% if task.evaluation %}
+                                                        <span class="badge bg-teal">Evaluated</span>
+                                                        {% else %}
+                                                        <span class="badge bg-blue-grey">Not Evaluated</span>
+                                                        {% endif %}
+                                                    {% endif %}
+                                                {% endif %}
+                                            </td>
+                                            <td>{{ task.due_date }}</td>
+                                            <td>
+                                                <div class="btn-group">
+                                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        Action <span class="caret"></span>
+                                                    </button>
+                                                    <ul class="dropdown-menu">
+                                                        {% if perms.evaluator.change_task %}
+                                                        <li><a href="{{ task.get_edit_url }}">Edit</a></li>
+                                                        {% endif %}
+                                                        {% if perms.evaluator.delete_task %}
+                                                        <li><a class="waves-effect delete_modal" data-toggle="modal" data-target="#smallModal" data-delete="{{ task.get_delete_url }}">Delete</a></li>
+                                                        {% endif %}
+                                                        {% if task.status != "complete" and perms.evaluator.add_progress %}
+                                                        <li><a class="waves-effect" href="{% url 'progress_new' task.id %}">Add Progress</a></li>
+                                                        {% endif %}
+                                                        <li role="separator" class="divider"></li>
+                                                        <li><a onclick="" class="waves-effect view_modal" data-toggle="modal" data-target="#defaultModal" data-task="{{ task.name }}" data-desc="{{ task.description }}">View Task</a></li>
+                                                        <li><a href="javascript:void(0);" class="waves-effect progress_view" data-toggle="modal" data-target="#defaultModal" data-progress="{{ task.id }}">View Progress</a></li>
+                                                        {% if task.status == "complete" and perms.evaluator.add_evaluation and perms.evaluator.change_evaluation %}
+                                                            <li role="seperator" class="divider"></li>
+                                                            {% if task.evaluation %}
+                                                                {% if perms.evaluator.change_evaluation %}
+                                                                <li><a class="waves-effect" href="{% url 'evaluation_edit' task.id %}">Edit Evaluation</a></li>
+                                                                {% endif %}
+                                                            {% else %}
+                                                                {% if perms.evaluator.add_evaluation %}
+                                                                <li><a class="waves-effect" href="{% url 'evaluation_new' task.id %}">Evaluate</a></li>
+                                                                {% endif %}
+                                                            {% endif %}
+                                                        {% endif %}
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- #END# Basic Examples -->
+
+        </div>
+        <div class="modal fade" id="defaultModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="defaultModalLabel">View Task</h4>
+                    </div>
+                    <div class="modal-body">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Small Size -->
+        <div class="modal fade" id="smallModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-sm" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <!-- <h4 class="modal-title" id="smallModalLabel">Modal title</h4> -->
+                    </div>
+                    <div class="modal-body">
+                        Confirm Delete
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#" class="btn btn-link waves-effect delete_obj">delete</a>
+                        <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CANCEL</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+    {% block extra_js %}
+    <!-- Jquery DataTable Plugin Js -->
+    <script src="/static/plugins/jquery-datatable/jquery.dataTables.js"></script>
+    <script src="/static/plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
+    <script src="/static/plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js"></script>
+    <script src="/static/plugins/jquery-datatable/extensions/export/buttons.flash.min.js"></script>
+    <script src="/static/plugins/jquery-datatable/extensions/export/jszip.min.js"></script>
+    <script src="/static/plugins/jquery-datatable/extensions/export/pdfmake.min.js"></script>
+    <script src="/static/plugins/jquery-datatable/extensions/export/vfs_fonts.js"></script>
+    <script src="/static/plugins/jquery-datatable/extensions/export/buttons.html5.min.js"></script>
+    <script src="/static/plugins/jquery-datatable/extensions/export/buttons.print.min.js"></script>
+    {% endblock %}
+
+    {% block custom_js %}
+    <script src="/static/js/pages/tables/jquery-datatable.js"></script>
+
+    <script>
+        var sources = document.querySelectorAll(".delete_modal")
+        var target = document.querySelector("#smallModal .modal-footer a");
+        for (let source of sources) {
+            source.addEventListener("click", (e) => {
+                var href = e.srcElement.getAttribute("data-delete");
+                target.setAttribute("href", String(href));
+            });
+        };
+        function view_task(name, description) {
+            console.log('yes')
+            var modalTitle = document.body.querySelector("#defaultModal .modal-title");
+            modalTitle.textContent = name.toUpperCase();
+            var modalBody = document.body.querySelector("#defaultModal .modal-body")
+            modalBody.textContent = description
+        }
+        var x = document.querySelectorAll(".view_modal");
+        for (let el of x) {
+            el.addEventListener("click", (e) => {
+                var name = e.srcElement.getAttribute("data-task");
+                var description = e.srcElement.getAttribute("data-desc");
+                view_task(name, description)
+            });
+        }
+    </script>
+    <script>
+
+        function modalCleanup() {
+            var list_group = document.body.querySelector(".list-group");
+            list_group.remove();
+        }
+
+        function buildModal(data) {
+            var targetHeading = document.body.querySelector("#defaultModal .modal-title");
+            targetHeading.textContent = "PROGRESS LIST"
+            var targetBody = document.body.querySelector("#defaultModal .modal-body");
+            if (data.progresses.length > 0) {
+                var container = document.createElement("ul");
+                container.className = "list-group";
+                for (let i = 0; i < data.progresses.length; i++) {
+                    var list = document.createElement("li");
+                    list.className = "list-group-item";
+                    list.innerHTML = `${data.progresses[i].description}<br><b>${data.progresses[i].date_added}</b>`;
+                    if (i == 0) {
+                        var badge = document.createElement("span");
+                        if (data.complete) {
+                            badge.textContent = "complete"
+                            badge.className = "badge bg-green";
+                        }
+                        else {
+                            badge.textContent = "in progress";
+                            badge.className = "badge bg-cyan";
+                        }
+                        list.appendChild(badge);
+                    }
+                    container.appendChild(list);
+                }
+                targetBody.textContent = "";
+                targetBody.appendChild(container);
+            }
+            else {
+                targetBody.textContent = "No Progress have been made for this task";
+            }
+        }
+
+        function getProgress(id) {
+            $.ajax({
+                "url": `/admin/task/${id}/progress/detail/`,
+                "dataType": "json"
+            }).done(function(data) {
+                console.log(data);
+                buildModal(data);
+            }).fail(function(jqXHR, textStatus, errorThrown) {
+                console.log(arguments);
+            })
+        }
+
+        var progress_btn = document.body.querySelectorAll(".progress_view");
+        console.log(progress_btn)
+        for (let btn of progress_btn) {
+            btn.addEventListener("click", (e) => {
+                var id = e.srcElement.getAttribute("data-progress");
+                getProgress(id);
+            })
+        }
+    </script>
+    {% endblock %}

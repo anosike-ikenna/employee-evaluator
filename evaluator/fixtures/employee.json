@@ -1,0 +1,54 @@
+[
+{
+    "model": "evaluator.employee",
+    "pk": 4,
+    "fields": {
+        "avatar": "employee/test.jpg",
+        "cv": "cvs/IMG_20190516_124450.jpg",
+        "github": "http://github.com/",
+        "user": 26,
+        "created": "2021-07-28",
+        "designations": [
+            2
+        ],
+        "departments": [
+            1,
+            12
+        ]
+    }
+},
+{
+    "model": "evaluator.employee",
+    "pk": 9,
+    "fields": {
+        "avatar": "employee/test_LCpSy8O.jpg",
+        "cv": "cvs/IMG_20190516_124450_orXn4OQ.jpg",
+        "github": "https://github.com/benimax",
+        "user": 32,
+        "created": "2021-08-02",
+        "designations": [
+            7
+        ],
+        "departments": [
+            13
+        ]
+    }
+},
+{
+    "model": "evaluator.employee",
+    "pk": 10,
+    "fields": {
+        "avatar": "employee/test_TZjO87Y.jpg",
+        "cv": "",
+        "github": "https://github.com/mex",
+        "user": 34,
+        "created": "2021-08-04",
+        "designations": [
+            7
+        ],
+        "departments": [
+            10
+        ]
+    }
+}
+]

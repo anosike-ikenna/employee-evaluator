@@ -1,0 +1,29 @@
+[
+{
+    "model": "auth.group",
+    "pk": 5,
+    "fields": {
+        "name": "evaluator",
+        "permissions": [
+            73,
+            74,
+            76,
+            72,
+            60
+        ]
+    }
+},
+{
+    "model": "auth.group",
+    "pk": 6,
+    "fields": {
+        "name": "employee",
+        "permissions": [
+            69,
+            70,
+            72,
+            60
+        ]
+    }
+}
+]

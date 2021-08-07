@@ -1,0 +1,46 @@
+[
+{
+    "model": "evaluator.ratings",
+    "pk": 1,
+    "fields": {
+        "efficiency": 5,
+        "timeliness": 5,
+        "quality": 4,
+        "accuracy": 5,
+        "performance_average": 95
+    }
+},
+{
+    "model": "evaluator.ratings",
+    "pk": 2,
+    "fields": {
+        "efficiency": 5,
+        "timeliness": 5,
+        "quality": 3,
+        "accuracy": 5,
+        "performance_average": 90
+    }
+},
+{
+    "model": "evaluator.ratings",
+    "pk": 3,
+    "fields": {
+        "efficiency": 5,
+        "timeliness": 5,
+        "quality": 5,
+        "accuracy": 4,
+        "performance_average": 95
+    }
+},
+{
+    "model": "evaluator.ratings",
+    "pk": 4,
+    "fields": {
+        "efficiency": 5,
+        "timeliness": 5,
+        "quality": 5,
+        "accuracy": 5,
+        "performance_average": 100
+    }
+}
+]

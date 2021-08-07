@@ -1,0 +1,26 @@
+[
+{
+    "model": "evaluator.designation",
+    "pk": 1,
+    "fields": {
+        "name": "junior developer",
+        "description": "for junior developers"
+    }
+},
+{
+    "model": "evaluator.designation",
+    "pk": 2,
+    "fields": {
+        "name": "mid-level developer",
+        "description": "for mid level developers"
+    }
+},
+{
+    "model": "evaluator.designation",
+    "pk": 7,
+    "fields": {
+        "name": "senior developer",
+        "description": "for senior level developers"
+    }
+}
+]

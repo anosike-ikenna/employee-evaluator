@@ -1,0 +1,202 @@
+{% extends "evaluator/base.html" %} 
+{% load evaluator_extras %}
+    {% block extra_css %}
+    <link href="/static/sweetalert/sweetalert.css" rel="stylesheet">
+    <!-- <link href="/static/plugins/dropzone/dropzone.css" rel="stylesheet"> -->
+    <!-- Bootstrap Select Css -->
+    <link href="/static/plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
+    {% endblock %} 
+
+    {% block content %}
+    <section class="content">
+        <div class="container-fluid">
+            <!-- <div class="block-header">
+                <h2>FORM EXAMPLES</h2>
+            </div> -->
+
+            <!-- Vertical Layout -->
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2 style="font-weight: bold; font-size: 22px;">
+                                NEW EVALUATION
+                            </h2>
+                            <!-- <ul class="header-dropdown m-r--5">
+                                <li class="dropdown">
+                                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                        <i class="material-icons">more_vert</i>
+                                    </a>
+                                    <ul class="dropdown-menu pull-right">
+                                        <li><a href="javascript:void(0);">Action</a></li>
+                                        <li><a href="javascript:void(0);">Another action</a></li>
+                                        <li><a href="javascript:void(0);">Something else here</a></li>
+                                    </ul>
+                                </li>
+                            </ul> -->
+                        </div>
+                        <div class="body">
+                            <form id="form_validation" action="{% url 'evaluation_new' task.id %}" method="POST">
+                                {% csrf_token %}
+                                {% if form.non_field_errors %}
+                                    <div class="my_error">
+                                        {% for error in form.non_field_errors %}
+                                            <li><em>{{ error }}</em></li>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                                <div class="col-md-12">
+                                    <h3 class="font-20">Assigned to</h3>
+                                    <p>{{ task.assigned_to|title }}</p>
+                                </div>
+                                <div class="col-md-12">
+                                    <h3 class="font-20">Evaluator</h3>
+                                    <p>{{ task.evaluator|title }}</p>
+                                </div>
+                                <div class="col-md-12">
+                                    <h3 class="font-20">Task Description</h3>
+                                    <p>{{ task.description }}</p>
+                                </div>
+                                <div class="col-md-12 m-t-10">
+                                    <h3 class="font-20">Ratings</h3>
+                                    <div class="col-md-3">
+                                        {% if rating_form.efficiency.errors %}
+                                            <div class="my_error">
+                                                <ul>
+                                                {% for error in rating_form.efficiency.error %}
+                                                    <li><em>{{ error }}</em></li>
+                                                {% endfor %}
+                                                </ul>
+                                            </div>
+                                        {% endif %}
+                                        <label for="employee">Efficiency</label>
+                                        <div class="form-line">
+                                            <div class="form-group">
+                                                <select name="efficiency" class="form-control show-tick" required>
+                                                    {% for iter in count %}
+                                                        <option value="{{ iter }}" {% if rating_form.efficiency.value == iter|intstr %} selected {% endif %}>
+                                                            {{ iter }}
+                                                        </option>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        {% if rating_form.timeliness.errors %}
+                                            <div class="my_error">
+                                                <ul>
+                                                {% for error in rating_form.timeliness.error %}
+                                                    <li><em>{{ error }}</em></li>
+                                                {% endfor %}
+                                                </ul>
+                                            </div>
+                                        {% endif %}
+                                        <label for="employee">Timeliness</label>
+                                        <div class="form-line">
+                                            <div class="form-group">
+                                                <select name="timeliness" class="form-control show-tick" required>
+                                                    {% for iter in count %}
+                                                        <option value="{{ iter }}" {% if rating_form.timeliness.value == iter|intstr %} selected {% endif %}>
+                                                            {{ iter }}
+                                                        </option>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        {% if rating_form.quality.errors %}
+                                            <div class="my_error">
+                                                <ul>
+                                                {% for error in rating_form.quality.error %}
+                                                    <li><em>{{ error }}</em></li>
+                                                {% endfor %}
+                                                </ul>
+                                            </div>
+                                        {% endif %}
+                                        <label for="employee">Quality</label>
+                                        <div class="form-line">
+                                            <div class="form-group">
+                                                <select name="quality" class="form-control show-tick" required>
+                                                    {% for iter in count %}
+                                                        <option value="{{ iter }}" {% if rating_form.quality.value == iter|intstr %} selected {% endif %}>
+                                                            {{ iter }}
+                                                        </option>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        {% if rating_form.accuracy.errors %}
+                                            <div class="my_error">
+                                                <ul>
+                                                {% for error in rating_form.accuracy.error %}
+                                                    <li><em>{{ error }}</em></li>
+                                                {% endfor %}
+                                                </ul>
+                                            </div>
+                                        {% endif %}
+                                        <label for="employee">Accuracy</label>
+                                        <div class="form-line">
+                                            <div class="form-group">
+                                                <select name="accuracy" class="form-control show-tick" required>
+                                                    {% for iter in count %}
+                                                        <option value="{{ iter }}" {% if rating_form.accuracy.value == iter|intstr %} selected {% endif %}>
+                                                            {{ iter }}
+                                                        </option>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group form-float">
+                                        {% if form.remarks.errors %}
+                                            <div class="my_error">
+                                                <ul>
+                                                {% for error in form.remarks.error %}
+                                                    <li><em>{{ error }}</em></li>
+                                                {% endfor %}
+                                                </ul>
+                                            </div>
+                                        {% endif %}
+                                        <label class="form-label font-20" for="remarks">Remarks</label>
+                                        <div class="form-line">
+                                            <textarea id="remarks" name="remarks" cols="30" rows="3" class="form-control no-resize" required>{{ form.remarks.value }}</textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <button type="submit" class="btn btn-primary m-t-15 m-l-10 p-l-30 p-r-30 waves-effect">SAVE</button>
+                            </form>
+                            <!--DateTime Picker -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section
+    {% endblock %}
+
+    {% block extra_js %}
+    <script src="/static/plugins/jquery-validation/jquery.validate.js"></script>
+    <script src="/static/plugins/dropzone/dropzone.js"></script>
+    {% endblock %} 
+
+    {% block custom_js %}
+    <script src="/static/js/pages/forms/form-validation.js"></script>
+    <!-- <script src="/static/js/pages/forms/advanced-form-elements.js"></script> -->
+
+    <script>
+        var my_x = document.body.querySelectorAll(".my_error")
+        if (my_x) {
+            for (let x of my_x) {
+                x.style.color = "red"
+                x.style.marginBottom = "10px"
+            }
+        }
+    </script>
+    {% endblock %}

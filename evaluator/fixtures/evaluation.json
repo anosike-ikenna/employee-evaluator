@@ -1,0 +1,22 @@
+[
+{
+    "model": "evaluator.evaluation",
+    "pk": 3,
+    "fields": {
+        "task": 6,
+        "date_evaluated": "2021-07-29",
+        "remarks": "very well done son",
+        "ratings": 3
+    }
+},
+{
+    "model": "evaluator.evaluation",
+    "pk": 4,
+    "fields": {
+        "task": 7,
+        "date_evaluated": "2021-08-03",
+        "remarks": "very well done son",
+        "ratings": 4
+    }
+}
+]

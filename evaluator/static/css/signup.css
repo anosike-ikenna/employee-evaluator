@@ -1,0 +1,104 @@
+#main {
+    display: flex;
+    flex-flow: row nowrap;
+    width: 100%;
+    margin-top: 0px;
+}
+
+#main_signup {
+    flex: 1 0 70%;
+    width: 70%;
+}
+
+form {
+    display: flex;
+    flex-flow: column nowrap;
+    width: 40%;
+    margin-left: auto;
+    margin-right: auto;
+    /* border-bottom: 1px solid #bbbbbb; */
+    /* padding-bottom: 10px; */
+}
+
+/* fieldset {
+    border-bottom: 1px solid #797979;
+    background-color: blue;
+} */
+
+legend {
+    font-size: 22px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+input, select {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: normal;
+}
+
+#email, #password {
+    width: 100%;
+    border-radius: 0px;
+    margin-top: 5px;
+}
+
+label {
+    margin-bottom: 15px;
+}
+
+.avatar_img, .cv_doc {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.upload_file {
+    width: 20%;
+    height: 100px;
+    border: 1px solid rgba(255, 255, 255, 0);
+    border-radius: 50%;
+    align-self: flex-end;
+}
+
+.avatar_pic {
+    height: 70px;
+}
+
+/* .hidden {
+    display: none;
+}
+
+.not_visible {
+    visibility: hidden;
+} */
+
+.form_nav {
+    display: flex;
+    flex-flow: row nowrap;
+    width: 40%;
+    margin-left: auto;
+    margin-right: auto;
+    /* border-bottom: 1px solid #bbbbbb; */
+    padding-bottom: 10px;
+    justify-content: space-between;
+}
+
+.next_btn, .prev_btn {
+    width: 40%;
+    box-sizing: border-box;
+    line-height: 46px;
+    border-radius: 50px;
+    padding-bottom: 0px;
+    font-size: 14px;
+    height: 50px;
+    background-color: #007bff;
+    color: #ffffff;
+}
+.next_btn:hover, .prev_btn:hover {
+    background-color: #2a8af1;
+    color: #ffffff;
+}

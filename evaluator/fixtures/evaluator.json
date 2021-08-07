@@ -1,0 +1,26 @@
+[
+{
+    "model": "evaluator.evaluator",
+    "pk": 10,
+    "fields": {
+        "avatar": "evaluators/test2.jpg",
+        "user": 21
+    }
+},
+{
+    "model": "evaluator.evaluator",
+    "pk": 12,
+    "fields": {
+        "avatar": "evaluators/test2_nZ40sGM.jpg",
+        "user": 23
+    }
+},
+{
+    "model": "evaluator.evaluator",
+    "pk": 14,
+    "fields": {
+        "avatar": "evaluators/test2_Ixa7yVp.jpg",
+        "user": 33
+    }
+}
+]

@@ -1,0 +1,157 @@
+body {
+    width: 96%;
+    margin: auto auto;
+}
+
+@media screen and (min-width: 1200px){
+    body {
+        width: 90%;
+        margin: auto auto;
+    }
+}
+
+header {
+    display: flex;
+    flex-flow: row nowrap;
+    width: 100%;
+    justify-content: space-between;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+header h1 {
+    font-size: 25px;
+    font-weight: bold;
+    align-self: center;
+    padding-top: 10px;
+}
+
+header .link_button {
+    height: 30px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    line-height: 30px;
+}
+
+#main {
+    display: flex;
+    flex-flow: column;
+    margin-top: 150px;
+}
+
+.intro_container {
+    width: 100%;
+    display: flex;
+    margin: auto auto;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#intro_content {
+    margin-right: 5%;
+    font-family: 16px;
+}
+
+#intro_hd {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: normal;
+    color: #007bff;
+    margin-bottom: .3em;
+}
+
+#intro_lg {
+    margin-bottom: .5em;
+    font-size: 50px;
+    font-weight: bold;
+}
+
+.style_p {
+    margin: 0 0 2em;
+    color: #3f3f3f;
+    font-size: 18px;
+}
+
+.link_button {
+    text-align: center;
+    text-decoration: none;
+    color: #ffffff;
+    background-color: #007bff;
+    padding: 0.9375em 1.5em;
+    letter-spacing: 0.04em;
+    border: 1px solid #007bff;
+    border-radius: 6px;
+    font-weight: 500;
+    line-height: 1;
+}
+
+.link_button:hover {
+    background-color: #2a8af1;
+    color: #ffffff;
+}
+
+#svg_content {
+    flex: 0 0 50%;
+}
+
+.extra_container {
+    display: flex;
+    flex-flow: column nowrap;
+    margin-top: 150px;
+}
+
+.extra_container > h2 {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 60px;
+}
+
+#extra_item_container {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+}
+
+.extra_item {
+    width: 32%;
+    box-sizing: border-box;
+    display: flex;
+    flex-flow: column nowrap;
+
+
+}
+
+.extra_item_svg {
+    border: 1px solid #ececec;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.extra_item h3 {
+    font-size: 21px;
+    font-weight: bold;
+}
+
+.extra_item_no {
+    display: inline-block;
+    background-color: #333333;
+    color: #ffffff;
+    margin-right: 8px;
+    padding-right: 10px;
+    padding-left: 7px;
+    border-radius: 50%;
+}
+
+/* pre {
+    background-color: #000;
+} */
+
+pre {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+}
+
+code {
+    width: 50%;
+    background-color: red;
+}

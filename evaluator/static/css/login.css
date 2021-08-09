@@ -65,11 +65,11 @@ label[for="email"], label[for="password"] {
     margin-top: 40px;
 }
 
-input[type=checkbox] {
+input[type="checkbox"] {
     margin-right: 10px;
 }
 
-input[type=checkbox]:hover {
+input[type="checkbox"]:hover {
     cursor: pointer;
 }
 

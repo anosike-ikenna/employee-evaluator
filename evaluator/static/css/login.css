@@ -14,10 +14,26 @@ form {
     display: flex;
     flex-flow: column nowrap;
     width: 40%;
+    min-width: 300px;
     margin-left: auto;
     margin-right: auto;
     border-bottom: 1px solid #bbbbbb;
     padding-bottom: 10px;
+}
+
+@media screen and (max-width: 480px) {
+    #main_login {
+        width: 100%;
+    }
+    form {
+        width: 75%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    form {
+        width: 55%;
+    }
 }
 
 label[for="email"], label[for="password"] {

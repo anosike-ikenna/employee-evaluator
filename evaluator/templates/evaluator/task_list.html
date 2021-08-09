@@ -159,7 +159,7 @@
                     <div class="modal-body">
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+                        <button type="button" class="btn btn-link waves-effect modal-close" data-dismiss="modal">CLOSE</button>
                     </div>
                 </div>
             </div>
@@ -210,13 +210,16 @@
             });
         };
         function view_task(name, description) {
-            console.log('yes')
             var modalTitle = document.body.querySelector("#defaultModal .modal-title");
             modalTitle.textContent = name.toUpperCase();
             var modalBody = document.body.querySelector("#defaultModal .modal-body")
             modalBody.textContent = description
         }
         var x = document.querySelectorAll(".view_modal");
+        var close_x = document.querySelector(".modal-close");
+        close_x.addEventListener("click", () => {
+            view_task("", "");
+        });
         for (let el of x) {
             el.addEventListener("click", (e) => {
                 var name = e.srcElement.getAttribute("data-task");

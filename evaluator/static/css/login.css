@@ -90,7 +90,7 @@ button {
     width: 50%;
     border-radius: 35px;
     font-size: 16px;
-    background-color: #007bff;
+    background-color: #08bb02;
     color: #ffffff;
 }
 
@@ -130,3 +130,23 @@ button:hover {
     background-color: #616467;
     border: 0px solid #616467;
 }
+
+.login_details {
+    margin-top: 100px;
+}
+
+.login_details button {
+    width: 100%;
+    border-radius: 4px;
+    /* background-color: #616467; */
+    border: 1px solid #000;
+    height: 45px;
+}
+
+/* .login_details button:hover {
+    background-color: #4c4d4e;
+}
+
+.login_details button:visited {
+    color: #ffffff;
+} */

@@ -21,7 +21,7 @@
 				<link href="/static/css/login.css" rel="stylesheet" type="text/css">
 		</head>
 
-		<body style="color: #fff; background-color: #000;">
+		<body style="color: #000; background-color: #fff;">
 			<header style="visibility: hidden;">
 				<h1>PLACEHOLDER</h1>
 				<a href="#" class="link_button">Apply now</a>
@@ -46,7 +46,7 @@
                                 </ul>
                         {% endif %}
 						<label for="email" style="color: #000;">
-							Email Address<br>
+							<!-- Email Address<br> -->
 							<input type="text" id="email" name="email" placeholder="Email address" value="{{ form.email.value }}" required>
 						</label>
                         {% if form.password.errors %}
@@ -57,17 +57,17 @@
                                 </ul>
                             {% endif %}
 						<label for="password" style="color: #000;">
-							Password<br>
+							<!-- Password<br> -->
 							<input type="password" id="password" name="password" placeholder="password" required>
 						</label>
 						<div class="row_submit">
 							<label for="remember_me">
 								<input type="checkbox" name="remember_me" id="remember_me" style="position: relative; opacity: 1;left: 0px;">Remember me
 							</label>
-						<button type="submit" style="border: 0px solid #000;">Proceed</button>
+						<button class="submit-btn" type="submit" style="border: 0px solid #000;">Proceed</button>
 						</div>
 						<div class="login_details">
-							<button class="btn btn-info waves-effect" type="button" data-toggle="modal" data-target="#defaultModal">View login details</button>
+							<button class="login-info" type="button" data-toggle="modal" data-target="#defaultModal">View login details</button>
 						</div>
 					</form>
 				</div>

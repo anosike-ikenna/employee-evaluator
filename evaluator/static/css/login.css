@@ -2,7 +2,7 @@
     display: flex;
     flex-flow: row nowrap;
     width: 100%;
-    margin-top: 0px;
+    margin-top: -50px;
 }
 
 #main_login {
@@ -45,7 +45,15 @@ label[for="email"], label[for="password"] {
 #email, #password {
     width: 100%;
     border-radius: 0px;
-    margin-top: 5px;
+    margin-top: 10px;
+}
+
+#email {
+    margin-top: 20px;
+}
+
+#password {
+    margin-top: 20px;
 }
 
 #forgot_pass {
@@ -85,7 +93,7 @@ label[for="remember_me"]:hover {
     cursor: pointer;
 }
 
-button {
+.submit-btn {
     height: 50px;
     width: 50%;
     border-radius: 35px;
@@ -94,7 +102,7 @@ button {
     color: #ffffff;
 }
 
-button:hover {
+.submit-btn:hover {
     background-color: #2a8af1;
     color: #ffffff;
 }
@@ -114,7 +122,7 @@ button:hover {
     text-align: center;
 }
 
-.sign_up_btn {
+.login-info {
     width: 100%;
     box-sizing: border-box;
     line-height: 46px;
@@ -125,22 +133,14 @@ button:hover {
     color: #616467;
     border: 2px solid #616467;
 }
-.sign_up_btn:hover {
+.login-info:hover {
     color: #ffffff;
     background-color: #616467;
     border: 0px solid #616467;
 }
 
 .login_details {
-    margin-top: 100px;
-}
-
-.login_details button {
-    width: 100%;
-    border-radius: 4px;
-    /* background-color: #616467; */
-    border: 1px solid #000;
-    height: 45px;
+    margin-top: 50px;
 }
 
 /* .login_details button:hover {

@@ -7,8 +7,6 @@ var efficiency = document.getElementById("rating-efficiency");
 var timeliness = document.getElementById("rating-timeliness");
 var quality = document.getElementById("rating-quality");
 var accuracy = document.getElementById("rating-accuracy");
-alert(efficiency.value);
-alert(timeliness.value);
 
 function getChartJs(type) {
     var config = null;

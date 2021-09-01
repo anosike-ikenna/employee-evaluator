@@ -126,8 +126,8 @@
                                                         {% if task.status == "complete" and perms.evaluator.add_evaluation and perms.evaluator.change_evaluation %}
                                                             <li role="seperator" class="divider"></li>
                                                             {% if task.evaluation %}
-                                                                {% if perms.evaluator.change_evaluation %}
-                                                                <li><a class="waves-effect" href="{% url 'evaluation_edit' task.id %}">Edit Evaluation</a></li>
+                                                                {% if perms.evaluator.view_evaluation %}
+                                                                <li><a class="waves-effect" href="{% url 'evaluation_detail' task.id %}">View Evaluation</a></li>
                                                                 {% endif %}
                                                             {% else %}
                                                                 {% if perms.evaluator.add_evaluation %}

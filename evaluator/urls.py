@@ -31,6 +31,7 @@ urlpatterns = [
     re_path(r"^task/(?P<id>\d+)/progress/detail/$", views.progress_detail, name="progress_detail"),
     re_path(r"^evaluation/list/$", views.evaluation_list, name="evaluation_list"),
     re_path(r"^task/(?P<id>\d+)/evaluation/new$", views.evaluation_new, name="evaluation_new"),
+    re_path(r"^task/(?P<id>\d+)/evaluation/detail/$", views.evaluation_detail, name="evaluation_detail"),
     re_path(r"^task/(?P<id>\d+)/evaluation/edit/$", views.evaluation_edit, name="evaluation_edit"),
     re_path(r"^task/(?P<id>\d+)/evaluation/delete/$", views.evaluation_delete, name="evaluation_delete"),
 ]

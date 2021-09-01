@@ -89,6 +89,9 @@
                                                         Action <span class="caret"></span>
                                                     </button>
                                                     <ul class="dropdown-menu">
+                                                        {% if perms.evaluator.view_evaluation %}
+                                                            <li><a href="{{ evaluation.get_absolute_url }}">View</a></li>
+                                                        {% endif %}
                                                         {% if perms.evaluator.change_evaluation %}
                                                             <li><a href="{{ evaluation.get_edit_url }}">Edit</a></li>
                                                         {% endif %}

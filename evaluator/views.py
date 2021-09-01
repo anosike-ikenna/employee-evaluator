@@ -556,6 +556,21 @@ def evaluation_edit(request, id):
     return render(request, "evaluator/evaluation_edit.html", context)
 
 @login_required
+@permission_required("evaluator.view_evaluation", raise_exception=True)
+def evaluation_detail(request, id):
+    task = Task.objects.get(id=id)
+    try:
+        evaluation = task.evaluation
+    except Task.evaluation.RelatedObjectDoesNotExist:
+        return HttpResponse("No evaluation available for this task")
+    ratings = evaluation.ratings
+    context = {
+        "task": task,
+        "ratings": ratings,
+    }
+    return render(request, "evaluator/evaluation_detail.html", context)
+
+@login_required
 @permission_required("evaluator.delete_evaluation", raise_exception=True)
 def evaluation_delete(request, id):
     task = get_object_or_404(Task, id=id)

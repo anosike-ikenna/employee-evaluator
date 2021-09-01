@@ -236,6 +236,11 @@ class Evaluation(models.Model):
     remarks = models.TextField(max_length=300)
     ratings = models.OneToOneField(Ratings, on_delete=models.CASCADE, blank=True)
 
+    def get_absolute_url(self):
+        return reverse("evaluation_detail", kwargs={
+            "id": self.task.id
+        })
+
     def get_edit_url(self):
         return reverse("evaluation_edit", kwargs={
             "id": self.task.id

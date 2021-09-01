@@ -66,7 +66,8 @@ def home(request):
                     "tasks": tasks,
                     "latest_tasks": latest_tasks,
                     "pending_tasks": pending_tasks,
-                    "inprogress_tasks": inprogress_tasks
+                    "inprogress_tasks": inprogress_tasks,
+                    "date": date.today()
                 }
             elif group.name == Evaluator.GROUPS[0]:
                 tasks = Task.objects.filter(evaluator=user.evaluator).order_by("-created")
@@ -87,6 +88,7 @@ def home(request):
                     "latest_tasks": latest_tasks,
                     "pending_eval": pending_eval,
                     "total_eval": total_eval,
+                    "date": date.today(),
                 }
     else:
         departments = Department.objects.count()
@@ -94,10 +96,8 @@ def home(request):
         users = get_user_model().objects.count()
         employees = Employee.objects.count()
         evaluators = Evaluator.objects.count()
-        tasks = Task.objects.all()
-        latest_tasks = list(tasks)
-        latest_tasks.reverse()
-        latest_tasks = latest_tasks[:5]
+        tasks = Task.objects.order_by("-created")
+        latest_tasks = list(tasks)[:5]
         context = {
             "departments": departments,
             "designations": designations,
@@ -106,6 +106,7 @@ def home(request):
             "evaluators": evaluators,
             "tasks": tasks,
             "latest_tasks": latest_tasks,
+            "date": date.today()
         }
     return render(request, "evaluator/home.html", context)
 

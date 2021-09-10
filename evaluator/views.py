@@ -55,7 +55,6 @@ def home(request):
     context = None
     if not user.is_superuser:
         for group in user.groups.all():
-            print(user)
             if group.name == Employee.GROUPS[0]:
                 tasks = Task.objects.filter(assigned_to=user.employee).order_by("-created")
                 latest_tasks = list(tasks)
@@ -128,7 +127,6 @@ def department_new(request):
     if request.method == "POST":
         form = DepartmentForm(request.POST)
         if form.is_valid():
-            print(request.POST["name"], request.POST["description"])
             form.save()
             messages.add_message(request, messages.SUCCESS, "Department created successfully")
             return redirect("department_list")
@@ -311,8 +309,6 @@ def employee_new(request):
             user.groups.add(Group.objects.get(name="employee"))
             messages.add_message(request, messages.SUCCESS, f"Employee with email: {user.email} created successfully")
             return redirect("employee_list")
-        print(user_form)
-        print(employee_form)
         context.update({"employee_form": employee_form, "user_form": user_form})
         return render(request, "evaluator/employee_new.html", context)
     return render(request, "evaluator/employee_new.html", context)
@@ -358,12 +354,10 @@ def employee_edit(request, id):
             messages.add_message(request, messages.SUCCESS, f"Employee with email: {user.email} updated successfully")
             return redirect("employee_list")
         else:
-            print(form, "\n************", employee_form)
             context.update({"form": form, "employee_form": employee_form})
             return render(request, "evaluator/employee_edit.html", context)
     form = UserCreationForm(instance=employee.user)
     employee_form = EmployeeForm(instance=employee)
-    print(employee_form)
     context.update({"form": form, "employee_form": employee_form})
     return render(request, "evaluator/employee_edit.html", context)
 
@@ -404,8 +398,6 @@ def task_list(request):
 @login_required
 @permission_required("evaluator.add_task", raise_exception=True)
 def task_new(request):
-    print(f"request path: {request.path}\nrequest full path: {request.get_full_path()}\nuser: {request.user}")
-    print(urlparse(request.get_full_path()).query.split("="))
     evaluators = Evaluator.objects.all()
     employees = Employee.objects.all()
     context = {"evaluators": evaluators, "employees": employees}
@@ -551,7 +543,6 @@ def evaluation_edit(request, id):
         return render(request, "evaluator/evaluation_edit.html", context)
     form = EvaluationForm(instance=evaluation)
     rating_form = RatingsForm(instance=ratings)
-    print(rating_form)
     context.update({"form": form, "rating_form": rating_form})
     return render(request, "evaluator/evaluation_edit.html", context)
 
